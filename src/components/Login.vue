@@ -1,10 +1,5 @@
 <template>
-    <ul>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-    </ul>
+<h1>Velkommen til FridgeMasters!</h1>
 </template>
 
 <script>
