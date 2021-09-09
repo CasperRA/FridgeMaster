@@ -1,12 +1,10 @@
 <template>
   <Cam />
-  <div class="home">
-  </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import Cam from '@/components/Cam.vue'
+import Cam from '@/components/CamTwo.vue'
 
 export default {
   name: 'Home',
