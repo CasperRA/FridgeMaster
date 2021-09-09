@@ -17,7 +17,7 @@
 
 <script>
 export default {
-  name: 'OurNav',
+  name: 'Login',
   props: {
     msg: String
   }
