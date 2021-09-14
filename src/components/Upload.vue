@@ -12,11 +12,7 @@
 
 <script>
 export default {
-  name: 'Upload',
-  props: {
-    msg: String
-  },
-
+  name: 'methodUpload',
   methods: {
       uploadImage() {
           const [file] = document.getElementById("fileToUpload").files

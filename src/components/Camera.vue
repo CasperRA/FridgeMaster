@@ -12,7 +12,7 @@
 
 <script>
 export default {
-    name: "OurCamera",
+    name: "methodCam",
 
     data() {
         return {
