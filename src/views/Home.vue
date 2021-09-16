@@ -41,18 +41,34 @@ export default {
   },
   methods: {
     readData() {
+      // Copy our data from the upload component
       let copyData = this.$refs.uploadComponent.dataImage;
       console.log(copyData);
+
+      // Use tesseract.js for OCR
       Tesseract.recognize(copyData, "eng", {
         logger: (m) => console.log(m),
       }).then(({ data: { text } }) => {
         console.log(text);
+
+        // create an array containing all lines/items
         let textToArray = text.split(/\r?\n/);
-        console.log(textToArray)
-      })
+        console.log(textToArray);
+
+        // search for certain items containing numbers or specific words, cut out those irrelevant
+        const filterSymbols = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+        for (let i = 0; i < textToArray.length; i++) {
+          if (filterSymbols.test(textToArray[i])) {
+            console.log("Symbol found " + i);
+
+            // I have to make a solution that checks for numbers or words and cuts out those certain items
+            
+          }
+        }
+      });
     },
-  }
-}
+  },
+};
 </script>
 
 <style>
