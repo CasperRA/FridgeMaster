@@ -13,11 +13,18 @@
 <script>
 export default {
   name: 'methodUpload',
+  data() {
+      return {
+          dataImage: 0  
+      }
+  },
   methods: {
       uploadImage() {
           const [file] = document.getElementById("fileToUpload").files
           if (file) {
-              document.getElementById("uploadedImage").src = URL.createObjectURL(file)
+            document.getElementById("uploadedImage").src = URL.createObjectURL(file);
+            this.dataImage = document.getElementById("uploadedImage").src;
+            console.log(this.dataImage)
           }
 
       }
