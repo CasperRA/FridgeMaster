@@ -19,11 +19,10 @@
   </button>
   <Upload v-if="activeMethod === 'methodUpload'" ref="uploadComponent" />
   <Cam v-if="activeMethod === 'methodCam'" ref="camComponent" />
-  <button @click="checkData()">Check</button>
+  <button @click="readData()">Check</button>
 </template>
 
 <script>
-// @ is an alias to /src
 import Cam from "@/components/Camera.vue";
 import Upload from "@/components/Upload.vue";
 import Tesseract from "tesseract.js";
@@ -41,23 +40,15 @@ export default {
     };
   },
   methods: {
-    checkData() {
-      let copyData = this.$refs.uploadComponent.dataImage;
-      let reader = new FileReader();
-      reader.readAsDataURL(copyData);
-      reader.onloadend = function() {
-        let base64data = reader.result;
-      console.log(base64data);
-      }
-      
-    },
     readData() {
-      // let copyData = this.$refs.uploadComponent.dataImage;
-      // console.log(copyData);
-      Tesseract.recognize("screenshotBon.jpg", "eng", {
+      let copyData = this.$refs.uploadComponent.dataImage;
+      console.log(copyData);
+      Tesseract.recognize(copyData, "eng", {
         logger: (m) => console.log(m),
       }).then(({ data: { text } }) => {
         console.log(text);
+        let textToArray = text.split(/\r?\n/);
+        console.log(textToArray)
       })
     },
   }
