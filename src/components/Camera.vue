@@ -17,15 +17,14 @@ export default {
     data() {
         return {
             isPhotoTaken: false,
-            camWidth: 1280,
-            camHeight: 960
+            camWidth: 640,
+            camHeight: 480
         }
     },
 
     methods: {
-// Starter Camera ved at først at lave nogle "constraints" der fortæller at det kun er video vi vil have, derefter bruger den de her constraints...
-// til at hente et medie som 
 
+// Starts cam and uses the constraints to only gather video, then streams the cam to our video object
         enableCam() {
             const camConstraints = (window.camConstraints = {
                 audio: false,
@@ -42,7 +41,7 @@ export default {
                 })
         },
 
-
+// Can take a picture by drawing a 2d canvas of the video 
         takePic() {
             console.log(this.camWidth, this.camHeight);
             this.isPhotoTaken = !this.isPhotoTaken;
