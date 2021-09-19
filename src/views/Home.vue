@@ -57,10 +57,11 @@ export default {
             console.log("Symbol found " + i);
 
             // I have to make a solution that checks for numbers or words and cuts out those certain items
+          } else if ((i = itemsArray.length)) {
+            this.scanned = true;
           }
         }
       });
-      this.scanned = true;
     },
   },
 };

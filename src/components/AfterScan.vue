@@ -5,24 +5,28 @@
 
 <script>
 export default {
-  name: 'Login',
+  name: "Login",
   props: {
-    msg: String
+    msg: String,
   },
-  mounted: function() {
-      let scannedArray = this.$parent.scannedArray;
-        console.log(scannedArray)
-        let ul = document.getElementById("dataList")
-        scannedArray.forEach(function(i) {
-            ul.innerHTML += '<li>'+ i +'</li>'
-        });
-}
-}
+  mounted: function () {
+    let scannedArray = this.$parent.scannedArray;
+    console.log(scannedArray);
+    let ul = document.getElementById("dataList");
+    scannedArray.forEach(function (i) {
+      ul.innerHTML += "<li>" + i + "</li>";
+    });
+  },
+};
 </script>
 
 <style scoped>
-    ul {
-        list-style: none;
-        padding: 0;
-    }
+h1 {
+  color: whitesmoke;
+}
+ul {
+  list-style: none;
+  padding: 0;
+  color: whitesmoke;
+}
 </style>

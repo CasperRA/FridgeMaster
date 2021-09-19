@@ -4,11 +4,11 @@
       <img src="@/components/photos/user.svg" alt="" />
     </button>
 
-    <button id="footerButtonCenter" class="footerButton footerCenterButton">
+    <button id="footerButtonCenter" class="footerButton footerCenterButton" style="visibility: hidden">
       <img src="@/components/photos/cam.svg" alt="" />
     </button>
 
-    <button id="footerButtonRight" class="footerButton">
+    <button id="footerButtonRight" class="footerButton" @click="goBack()">
       <img src="@/components/photos/back.svg" alt="" />
     </button>
   </footer>
@@ -20,6 +20,12 @@ export default {
   props: {
     msg: String,
   },
+  methods: {
+      goBack() {
+          this.$parent.scanned = false;
+          console.log("went back")
+      }
+  }
 };
 </script>
 
