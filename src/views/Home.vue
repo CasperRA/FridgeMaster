@@ -52,13 +52,13 @@ export default {
         console.log(text);
 
         // create an array containing all lines/items
-        let textToArray = text.split(/\r?\n/);
-        console.log(textToArray);
+        let itemsArray = text.split(/\r?\n/);
+        console.log(itemsArray);
 
         // search for certain items containing numbers or specific words, cut out those irrelevant
         const filterSymbols = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
-        for (let i = 0; i < textToArray.length; i++) {
-          if (filterSymbols.test(textToArray[i])) {
+        for (let i = 0; i < itemsArray.length; i++) {
+          if (filterSymbols.test(itemsArray[i])) {
             console.log("Symbol found " + i);
 
             // I have to make a solution that checks for numbers or words and cuts out those certain items
