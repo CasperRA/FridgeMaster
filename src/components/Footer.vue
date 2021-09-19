@@ -1,15 +1,15 @@
 <template>
   <footer>
-    <button class="footerButton">
+    <button id="footerButtonLeft" class="footerButton">
       <img src="@/components/photos/user.svg" alt="" />
     </button>
 
-    <button class="footerButton footerCenterButton">
-      <img src="" alt="" />
+    <button id="footerButtonCenter" class="footerButton footerCenterButton">
+      <img src="@/components/photos/cam.svg" alt="" />
     </button>
 
-    <button class="footerButton">
-      <img src="" alt="" />
+    <button id="footerButtonRight" class="footerButton">
+      <img src="@/components/photos/back.svg" alt="" />
     </button>
   </footer>
 </template>
@@ -29,7 +29,7 @@ footer {
   bottom: 0;
   background-color: #4fb578;
   width: 100vw;
-  height: 12vh;
+  height: 12.5vh;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -46,12 +46,29 @@ footer {
   margin-right: 1.5rem;
   border-style: solid;
   border-color: #394c4f;
+  padding: auto;
 }
 
-.footerCenterButton {
+#footerButtonCenter {
   width: 4.5rem;
   height: 4.5rem;
   max-width: 4.5rem;
   max-height: 4.5rem;
+}
+
+#footerButtonCenter img {
+  width: 75%;
+}
+
+#footerButtonLeft img {
+  width: 90%;
+}
+
+#footerButtonRight {
+  padding: 4px;
+}
+
+#footerButtonRight img {
+  width: 100%;
 }
 </style>
