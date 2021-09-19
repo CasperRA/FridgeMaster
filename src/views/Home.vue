@@ -20,11 +20,13 @@
   <Upload v-if="activeMethod === 'methodUpload'" ref="uploadComponent" />
   <Cam v-if="activeMethod === 'methodCam'" ref="camComponent" />
   <button @click="readData()">Check</button>
+  <Footer/>
 </template>
 
 <script>
 import Cam from "@/components/Camera.vue";
 import Upload from "@/components/Upload.vue";
+import Footer from "@/components/Footer.vue"
 import Tesseract from "tesseract.js";
 
 export default {
@@ -32,6 +34,7 @@ export default {
   components: {
     Cam,
     Upload,
+    Footer
   },
   data() {
     return {
@@ -75,5 +78,7 @@ export default {
 body {
   margin: 0;
   padding: 0;
+  min-height: 100vh;
+  max-height: 100vh;
 }
 </style>
