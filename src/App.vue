@@ -3,8 +3,8 @@
 </template>
 
 <style>
-html {
-   background: #5cd48c;
+body {
+     background: #5cd48c;
 }
 #app {
   @import url(https://fonts.googleapis.com/css2?family=Comfortaa&display=swap);
