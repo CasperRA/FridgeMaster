@@ -1,4 +1,5 @@
 <template>
+<!-- Simple input that loads 2 function on change -->
   <h1>Upload eller tag et billede</h1>
   <form id="uploadForm">
     <label id="labelUpload" for="fileToUpload">
@@ -27,6 +28,7 @@ export default {
       dataImage: 0,
     };
   },
+  // UploadImage gets the uploaded file and sets the source of our image tag to the uploaded file, as an URL
   methods: {
     uploadImage() {
       const [file] = document.getElementById("fileToUpload").files;
@@ -38,6 +40,7 @@ export default {
         document.getElementById("uploadForm").style.display = "none"
       }
     },
+    // Launches the readData function in Home.vue 
     readData() {
         this.$parent.readData();
     }

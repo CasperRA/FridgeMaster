@@ -9,6 +9,7 @@ export default {
   props: {
     msg: String,
   },
+  // On load, gets the scanned array, from Home.vue and makes list items for each item in the array
   mounted: function () {
     let scannedArray = this.$parent.scannedArray;
     console.log(scannedArray);

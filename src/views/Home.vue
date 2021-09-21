@@ -1,10 +1,4 @@
 <template>
-  <!-- <button
-    @click="(activeMethod = 'none'), (backToMethod = 'disabled')"
-    v-if="backToMethod === 'enabled'"
-  >
-    Tilbage
-  </button> -->
   <Upload ref="uploadComponent" v-if="this.scanned === false" />
   <AfterScan v-if="this.scanned === true" />
   <Footer />
@@ -56,7 +50,7 @@ export default {
           if (filterSymbols.test(itemsArray[i])) {
             console.log("Symbol found " + i);
 
-            // I have to make a solution that checks for numbers or words and cuts out those certain items
+            // I have to make a solution that checks for numbers or words and cuts out those certain bits
           } else if ((i = itemsArray.length)) {
             this.scanned = true;
           }

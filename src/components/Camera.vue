@@ -22,7 +22,6 @@
     <button @click="takePic()">Tag billede</button>
   </div>
 </template>
-
 <script>
 export default {
   name: "methodCam",
