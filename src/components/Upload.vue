@@ -16,6 +16,7 @@
     />
   </form>
   <div class="imageContainer">
+    <img v-if="dataImage !== 0" id="loading" src="@/components/photos/Loading.svg" alt="">
     <img id="uploadedImage" src="" />
   </div>
 </template>
@@ -112,5 +113,13 @@ h1 {
   margin: auto;
   width: 75%;
   padding: 12.5%;
+}
+
+#loading {
+  position: absolute;
+  width: 50%;
+  z-index: 2;
+  top: 25vh;
+  left: 25%;
 }
 </style>
