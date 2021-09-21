@@ -32,7 +32,7 @@ export default {
 
 <style scoped>
 footer {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   background-color: #4fb578;
   width: 100vw;
