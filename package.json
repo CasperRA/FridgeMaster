@@ -14,7 +14,8 @@
     "tesseract.js": "^2.1.5",
     "vue": "^3.0.0",
     "vue-picture-swipe": "^2.1.0",
-    "vue-router": "^4.0.0-0"
+    "vue-router": "^4.0.0-0",
+    "webpack": "^4.46.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
