@@ -3,11 +3,7 @@
   <h1>Upload eller tag et billede</h1>
   <form id="uploadForm">
     <label id="labelUpload" for="fileToUpload">
-      <div class="auto"></div>
-      <div id="uploadButton" class="button image is-square is-primary is-rounded is-96x96">
-        <img class="image is-square is-96x96" src="@/components/photos/upload.svg" alt="" />
-      </div>
-      <div class="auto"></div>
+        <img class="image button is-rounded is-outlined is-96x96" src="@/components/photos/upload.svg" alt="" />
     </label>
     <input
       accept="image/*"

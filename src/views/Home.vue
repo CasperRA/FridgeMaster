@@ -1,7 +1,9 @@
 <template>
-  <Upload ref="uploadComponent" v-if="this.scanned === false" />
-  <AfterScan v-if="this.scanned === true" />
-  <Footer />
+  <body class="has-background-primary">
+    <Upload ref="uploadComponent" v-if="this.scanned === false" />
+    <AfterScan v-if="this.scanned === true" />
+    <Footer />
+  </body>
 </template>
 
 <script>
@@ -61,11 +63,3 @@ export default {
 };
 </script>
 
-<style>
-body {
-  margin: 0;
-  padding: 0;
-  min-height: 100vh;
-  max-height: 100vh;
-}
-</style>
