@@ -22,22 +22,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-h1 {
-  background-color: #5cd48c;
-  color: whitesmoke;
-  margin: 0;
-  padding-top: 1.5rem;
-}
-ul {
-  list-style: none;
-  padding: 0;
-  color: whitesmoke;
-}
-.overFooter {
-  min-height: 80vh;
-  max-height: 80vh;
-  overflow: scroll;
-}
-</style>
