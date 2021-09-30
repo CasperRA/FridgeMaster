@@ -7845,43 +7845,23 @@ a.has-text-danger-dark:hover, a.has-text-danger-dark:focus {
 
 .footer {
   background-color: #fafafa;
-  padding: 3rem 1.5rem 6rem; }
+  padding: 2rem 1.5rem 2rem; }
 
 .button-circle {
   border-radius: 9999px; }
 
 .bg-image {
-  background-image: url(../src/components/photos/foodicons025.png); }
+  position: relative;
+  overflow: hidden; }
 
-.is-10height {
-  height: 10%; }
-
-.is-20height {
-  height: 20%; }
-
-.is-30height {
-  height: 30%; }
-
-.is-40height {
-  height: 40%; }
-
-.is-50height {
-  height: 50%; }
-
-.is-60height {
-  height: 60%; }
-
-.is-70height {
-  height: 70%; }
-
-.is-80height {
-  height: 80%; }
-
-.is-90height {
-  height: 90%; }
-
-.is-fullheight {
-  height: 100%; }
+.bg-image::before {
+  content: ' ';
+  display: block;
+  z-index: -1;
+  opacity: 0.6;
+  background-image: url(../src/components/photos/foodicons025.png);
+  overflow: hidden;
+  background-size: cover; }
 
 .is-fullscreen {
   height: 100vh;

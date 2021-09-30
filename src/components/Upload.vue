@@ -1,7 +1,8 @@
 <template>
 <!-- Simple input that loads 2 function on change -->
-  <h1 class="has-text-white is-size-4 has-text-centered has-text-weight-bold">Upload eller tag et billede</h1>
-  <form id="uploadForm" class="bg-image is-80height">
+<section style="height: 85%;">
+  <h1 class="has-text-white is-size-3 has-text-centered has-text-weight-bold py-4">Upload eller tag et billede</h1>
+  <form id="uploadForm" class="bg-image is-clipped" style="height: 100%;">
     <label id="labelUpload" class="is-flex is-justify-content-center is-fullheight" for="fileToUpload">
         <img class="image button is-rounded is-outlined is-96x96 " src="@/components/photos/upload.svg" alt="" />
     </label>
@@ -13,10 +14,11 @@
       style="visibility: hidden"
     />
   </form>
-  <div class="imageContainer">
+  <div class="imageContainer"  style="height: 0;">
     <img v-if="dataImage !== 0" id="loading" src="@/components/photos/Loading.svg" alt="">
     <img id="uploadedImage" src="" />
   </div>
+  </section>
 </template>
 
 <script>
