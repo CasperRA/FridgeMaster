@@ -1,7 +1,9 @@
 <template>
-  <Upload ref="uploadComponent" v-if="this.scanned === false" />
-  <AfterScan v-if="this.scanned === true" />
-  <Footer />
+  <body class="has-background-primary is-fullscreen is-family-primary">
+    <Upload ref="uploadComponent" v-if="this.scanned === false" />
+    <AfterScan v-if="this.scanned === true" />
+    <Footer />
+  </body>
 </template>
 
 <script>
@@ -26,6 +28,13 @@ export default {
       scanned: false,
       scannedArray: "",
     };
+  },
+  metaInfo() {
+    return {
+      meta: [
+                { name: 'title', content: 'Very Nice' }
+      ]
+    }
   },
   methods: {
     readData() {
@@ -61,11 +70,3 @@ export default {
 };
 </script>
 
-<style>
-body {
-  margin: 0;
-  padding: 0;
-  min-height: 100vh;
-  max-height: 100vh;
-}
-</style>
