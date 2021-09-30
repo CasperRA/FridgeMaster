@@ -1,9 +1,9 @@
 <template>
 <!-- Simple input that loads 2 function on change -->
-  <h1>Upload eller tag et billede</h1>
-  <form id="uploadForm">
-    <label id="labelUpload" for="fileToUpload">
-        <img class="image button is-rounded is-outlined is-96x96" src="@/components/photos/upload.svg" alt="" />
+  <h1 class="has-text-white is-size-4 has-text-centered has-text-weight-bold">Upload eller tag et billede</h1>
+  <form id="uploadForm" class="bg-image is-80height">
+    <label id="labelUpload" class="is-flex is-justify-content-center is-fullheight" for="fileToUpload">
+        <img class="image button is-rounded is-outlined is-96x96 " src="@/components/photos/upload.svg" alt="" />
     </label>
     <input
       accept="image/*"

@@ -1,5 +1,5 @@
 <template>
-  <body class="has-background-primary">
+  <body class="has-background-primary is-fullscreen is-family-primary">
     <Upload ref="uploadComponent" v-if="this.scanned === false" />
     <AfterScan v-if="this.scanned === true" />
     <Footer />
@@ -28,6 +28,13 @@ export default {
       scanned: false,
       scannedArray: "",
     };
+  },
+  metaInfo() {
+    return {
+      meta: [
+                { name: 'title', content: 'Very Nice' }
+      ]
+    }
   },
   methods: {
     readData() {
