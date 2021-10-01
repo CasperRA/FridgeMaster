@@ -47,6 +47,8 @@ export default {
     goBack() {
       this.$parent.scanned = false;
       console.log("went back");
+      document.getElementById("footerButtonCenter2").style.display = "none"
+      document.getElementById("footerButtonCenter").style.display = "block"
     },
     accept() {
       document.getElementById("accepted-modal").classList.add("is-active")

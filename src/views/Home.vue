@@ -62,7 +62,6 @@ export default {
             // I have to make a solution that checks for numbers or words and cuts out those certain bits
           } else if ((i = itemsArray.length)) {
             this.scanned = true;
-            print("hello world")
           }
         }
       });
