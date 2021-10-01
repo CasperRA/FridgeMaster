@@ -57,7 +57,7 @@ export default {
         const filterSymbols = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
         for (let i = 0; i < itemsArray.length; i++) {
           if (filterSymbols.test(itemsArray[i])) {
-            console.log("Symbol found " + i);
+            console.log("Symbol found " + i + itemsArray[i]);
 
             // I have to make a solution that checks for numbers or words and cuts out those certain bits
           } else if ((i = itemsArray.length)) {

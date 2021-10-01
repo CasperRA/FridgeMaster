@@ -1,7 +1,10 @@
 <template>
-  <h1>Dine Scannet varer</h1>
-  <section class="overFooter">
+<section class="overFooter" style="height: 88%;">
+  <h1 class="has-text-white is-size-3 has-text-centered has-text-weight-bold pt-3" style="height: 10%;">Dine Scannet varer</h1>
+  <div style="height: 90%; overflow: scroll;" >
     <ul id="dataList"></ul>
+  </div>
+    
   </section>
 </template>
 
@@ -17,7 +20,7 @@ export default {
     console.log(scannedArray);
     let ul = document.getElementById("dataList");
     scannedArray.forEach(function (i) {
-      ul.innerHTML += "<li>" + i + "</li>";
+      ul.innerHTML += "<li class='varer p-1 pl-4 has-text-white'>" + i + "</li>";
     });
   },
 };
