@@ -3,6 +3,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap');
 
 $primary: #5CD48C;
+$primary-dark: #4FB578;
 $button-border-width: 3px;
 $button-border-color: #394c4f;
 $family-primary: "Comfortaa", Arial;
@@ -19,6 +20,9 @@ $is-rounded: "padding: 0";
     background-image: url(../src/components/photos/foodicons025.png);
 }
 
+.yellow-button{
+    background-color: #E6BC34;
+}
 
 .is-fullscreen {
     height: 100vh;

@@ -1,12 +1,14 @@
 <template>
   <body class="has-background-primary is-fullscreen is-family-primary">
-    <Upload ref="uploadComponent" v-if="this.scanned === false" />
-    <AfterScan v-if="this.scanned === true" />
+    <!-- <Upload ref="uploadComponent" v-if="this.scanned === false" />
+    <AfterScan v-if="this.scanned === true" />-->
+    <Recipe />
     <Footer />
   </body>
 </template>
 
 <script>
+import Recipe from "@/components/Recipe.vue";
 import Cam from "@/components/Camera.vue";
 import Upload from "@/components/Upload.vue";
 import Footer from "@/components/Footer.vue";
@@ -16,6 +18,7 @@ import Tesseract from "tesseract.js";
 export default {
   name: "Home",
   components: {
+    Recipe,
     Cam,
     Upload,
     Footer,
