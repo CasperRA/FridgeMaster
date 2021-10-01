@@ -1,14 +1,15 @@
 <template>
+<div class="is-fulltofooter">
   <h1 class="has-text-white is-size-3 has-text-centered has-text-weight-bold pt-3 pb-3">Opskrifter</h1>
   <section class="is-flex is-justify-content-space-around">
-      <div class="box has-background-warning">
-            <img src="@/components/photos/restaurant_black_24dp.svg" alt="Recipe Thumbnail">
+      <div class="button has-background-warning is-xlarge"  style="border: none;">
+            <img class="image is-32x32" src="@/components/photos/restaurant_black_24dp.svg" alt="Recipe Thumbnail">
       </div>
-      <div class="box has-background-success">
-            <img src="@/components/photos/cake_black_24dp.svg" alt="Recipe Thumbnail">
+      <div class="button has-background-success is-xlarge"  style="border: none;">
+            <img class="image is-32x32" src="@/components/photos/cake_black_24dp.svg" alt="Recipe Thumbnail">
       </div>
-      <div class="box has-background-success">
-            <img src="@/components/photos/breakfast.svg" alt="Recipe Thumbnail">
+      <div class="button has-background-success is-xlarge" style="border: none;">
+            <img class="image is-32x32" src="@/components/photos/breakfast.svg" alt="Recipe Thumbnail">
       </div>
   </section>
   <h2 class="has-text-white is-size-4 ml-5 mt-4 mb-4">Aftensmad du kan lave:</h2>
@@ -40,4 +41,5 @@
       </div>
     </article>
   </section>
+  </div>
 </template>

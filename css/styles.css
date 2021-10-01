@@ -7860,6 +7860,13 @@ a.has-text-danger-dark:hover, a.has-text-danger-dark:focus {
   background-image: url("../src/components/photos/foodicons025.png");
   overflow: hidden; }
 
+.yellow-button {
+  background-color: #E6BC34; }
+
+.is-fulltofooter {
+  height: 88%;
+  overflow: scroll; }
+
 .is-fullscreen {
   height: 100vh;
   width: 100vw;
