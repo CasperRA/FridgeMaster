@@ -49,8 +49,27 @@ export default {
         console.log(itemsArray);
         this.scannedArray = itemsArray;
         let combinedArray = [];
+        let testNumbers = /\d/;
         // search for certain items containing numbers or specific words, cut out those irrelevant
         const filterSymbols = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+
+        for (let c = 0; c < itemsArray.length; c++) {
+          if (testNumbers.test(itemsArray[c].toString()) == false) {
+            console.log(
+              "removing " + itemsArray[c] + " because of no numbers " + c
+            );
+            itemsArray.splice(c, 1);
+          }
+        }
+
+        for (let b = 0; b < itemsArray.length; b++) {
+          if (testNumbers.test(itemsArray[b].toString()) == false) {
+            console.log(
+              "removing " + itemsArray[b] + " because of no numbers " + b
+            );
+            itemsArray.splice(b, 1);
+          }
+        }
 
         for (let a = 0; a < itemsArray.length; a++) {
           if (
@@ -62,13 +81,6 @@ export default {
             itemsArray[a].includes("rabat") == true
           ) {
             itemsArray.splice(a, 1);
-          }
-        }
-
-        for (let b = 0; b < itemsArray.length; b++) {
-          if (itemsArray[b].includes(undefined) == true) {
-            console.log("removing "+itemsArray[b])
-            itemsArray.splice(b, 1);
           }
         }
 
