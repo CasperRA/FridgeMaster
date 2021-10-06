@@ -39,10 +39,13 @@ export default {
       ul.innerHTML +=
         '<li id="scannedItem' +
         x +
-        '" class="varer py-1.5 px-4 has-text-white is-flex is-justify-content-space-between is-align-items-center">' +
+        '" class="varer py-1.5 px-4 has-text-white is-flex is-justify-content-space-between is-align-items-center"style=" text-overflow: ellipsis; width: 100%;">' +
+        '<div class="is-flex" style="width: 55%; text-overflow: ellipsis; overflow: hidden;">' +
         i +
-        '<div class="is-flex">' +
-        '<input type="date"  min="2021-05-10" style="width: 6rem;">"' +
+        '</div>' +
+        '<div class="is-flex is-justify-content-space-between" style="width: 43%;">' +
+        '<input type="date"  min="2021-05-10" style="width: 70%">' +
+        '<div class="is-flex is-justify-content-end" style="width: 30%; text-overflow: ellipsis; overflow: hidden;">' +
         '<button id="delete' +
         x +
         '" class="button button-circle" style="position: relative; right: 0rem;">' +
@@ -50,6 +53,7 @@ export default {
         '<img src="@/component/photos/delete.svg">' +
         "</span>" +
         "</button>" +
+         "</div>" +
         "</div>" +
         "</li>";
       x++;
