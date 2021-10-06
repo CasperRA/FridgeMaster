@@ -1,7 +1,8 @@
 <template>
   <body class="has-background-black is-fullscreen is-family-primary">
-    <Upload ref="uploadComponent" v-if="this.scanned === false" />
-    <AfterScan v-if="this.scanned === true" />
+    <Recipe />
+    <!-- <Upload ref="uploadComponent" v-if="this.scanned === false" />
+    <AfterScan v-if="this.scanned === true" /> -->
     <Footer />
   </body>
 </template>
@@ -23,7 +24,8 @@ export default {
     Footer,
     AfterScan,
   },
-  data() {
+  
+    Recipedata() {
     return {
       activeMethod: "none",
       backToMethod: "disabled",
