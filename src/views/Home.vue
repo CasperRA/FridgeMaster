@@ -1,8 +1,7 @@
 <template>
-  <body class="has-background-primary is-fullscreen is-family-primary">
-    <!-- <Upload ref="uploadComponent" v-if="this.scanned === false" />
-    <AfterScan v-if="this.scanned === true" />-->
-    <Recipe />
+  <body class="has-background-black is-fullscreen is-family-primary">
+    <Upload ref="uploadComponent" v-if="this.scanned === false" />
+    <AfterScan v-if="this.scanned === true" />
     <Footer />
   </body>
 </template>
@@ -32,13 +31,7 @@ export default {
       scannedArray: "",
     };
   },
-  metaInfo() {
-    return {
-      meta: [
-                { name: 'title', content: 'Very Nice' }
-      ]
-    }
-  },
+
   methods: {
     readData() {
       // Copy our data from the upload component
@@ -55,15 +48,68 @@ export default {
         let itemsArray = text.split(/\r?\n/);
         console.log(itemsArray);
         this.scannedArray = itemsArray;
-
+        let combinedArray = [];
+        let testNumbers = /\d/;
         // search for certain items containing numbers or specific words, cut out those irrelevant
         const filterSymbols = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
-        for (let i = 0; i < itemsArray.length; i++) {
-          if (filterSymbols.test(itemsArray[i])) {
-            console.log("Symbol found " + i + itemsArray[i]);
 
-            // I have to make a solution that checks for numbers or words and cuts out those certain bits
-          } else if ((i = itemsArray.length)) {
+        for (let c = 0; c < itemsArray.length; c++) {
+          if (testNumbers.test(itemsArray[c].toString()) == false) {
+            console.log(
+              "removing " + itemsArray[c] + " because of no numbers " + c
+            );
+            itemsArray.splice(c, 1);
+          }
+        }
+
+        for (let b = 0; b < itemsArray.length; b++) {
+          if (testNumbers.test(itemsArray[b].toString()) == false) {
+            console.log(
+              "removing " + itemsArray[b] + " because of no numbers " + b
+            );
+            itemsArray.splice(b, 1);
+          }
+        }
+
+        for (let a = 0; a < itemsArray.length; a++) {
+          if (
+            itemsArray[a].includes("RABAT") == true ||
+            itemsArray[a].includes("PANT") == true ||
+            itemsArray[a].includes("Pant") == true ||
+            itemsArray[a].includes("Rabat") == true ||
+            itemsArray[a].includes("pant") == true ||
+            itemsArray[a].includes("rabat") == true
+          ) {
+            itemsArray.splice(a, 1);
+          }
+        }
+
+        for (let i = 0; i < itemsArray.length; i++) {
+          console.log(i);
+          if (
+            itemsArray[i].includes("RABAT") == true ||
+            itemsArray[i].includes("PANT") == true ||
+            itemsArray[i].includes("Pant") == true ||
+            itemsArray[i].includes("Rabat") == true ||
+            itemsArray[i].includes("pant") == true ||
+            itemsArray[i].includes("rabat") == true ||
+            itemsArray[i] == null
+          ) {
+            itemsArray.splice(i, 1);
+          } else {
+            let arrayString = itemsArray[i].toString();
+            arrayString = arrayString.split(" ");
+            let arrayStringPopped = arrayString.pop();
+            arrayString = arrayString.join(" ");
+            if (arrayString === null) {
+            } else {
+              console.log(arrayString);
+              combinedArray = combinedArray.concat(arrayString);
+            }
+          }
+
+          if (i == itemsArray.length - 1) {
+            this.scannedArray = combinedArray;
             this.scanned = true;
           }
         }

@@ -1,10 +1,10 @@
 <template>
 <!-- Simple input that loads 2 function on change -->
-<section style="height: 88%;">
+<section class="bg-image" style="height: 88%;">
   <h1 class="has-text-white is-size-3 has-text-centered has-text-weight-bold pt-3" style="height: 17%;">Upload eller tag et billede</h1>
-  <form id="uploadForm" class="bg-image is-clipped" style="height: 83%;">
+  <form id="uploadForm" class="is-clipped" style="height: 83%;">
     <label id="labelUpload" class="is-flex is-justify-content-center" for="fileToUpload" style="height: 100%; Align-items: center;">
-        <img class="image button is-rounded is-outlined is-96x96 " src="@/components/photos/upload.svg" alt="" />
+        <img class="image button is-rounded is-outlined is-96x96 " src="@/components/photos/upload.svg" alt="" style="margin-bottom:17%;"/>
     </label>
     <input
       accept="image/*"
