@@ -43,18 +43,18 @@ export default {
         x++
     });
     for (y = 0; y < x; y++) {
-      document.getElementById("delete"+y).addEventListener("click", () => 
-      document.getElementById("scannedItem"+y).remove(),
+      let deleteButton = document.getElementById("delete"+y);
+      let item = document.getElementById("scannedItem"+y);
+      deleteButton.addEventListener("click", () => 
+      item.remove(),
       scannedArray.splice(y, 1))
+      
     }
   },
   methods: {
-    delete: function(x) {
-      console.log("I just got clicked!")
-      document.getElementById("scannedItem"+x).remove();
-      this.scannedArray.splice(x, 1)
-    },
-    
+    checkArray() {
+
+    }
   }
 };
 </script>

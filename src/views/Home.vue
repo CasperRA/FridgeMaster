@@ -1,5 +1,5 @@
 <template>
-  <body class="has-background-primary is-fullscreen is-family-primary">
+  <body class="has-background-black is-fullscreen is-family-primary">
     <Upload ref="uploadComponent" v-if="this.scanned === false" />
     <AfterScan v-if="this.scanned === true" />
     <Footer />
