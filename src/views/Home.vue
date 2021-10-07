@@ -1,5 +1,6 @@
 <template>
   <body class="has-background-black is-fullscreen is-family-primary">
+    <button @click="writeFoodData('item1', 'cake', '27-10-2021')">Send DATA</button>
     <Upload ref="uploadComponent" v-if="this.scanned === false" />
     <AfterScan v-if="this.scanned === true" />
     <Footer />
@@ -13,6 +14,9 @@ import Upload from "@/components/Upload.vue";
 import Footer from "@/components/Footer.vue";
 import AfterScan from "@/components/AfterScan.vue";
 import Tesseract from "tesseract.js";
+import { initializeApp } from 'firebase/app'
+import { firebaseConfig } from '../firebase.js'
+import { getDatabase, ref, set } from "firebase/database";
 
 export default {
   name: "Home",
@@ -23,8 +27,8 @@ export default {
     Footer,
     AfterScan,
   },
-  
-    data() {
+
+  data() {
     return {
       activeMethod: "none",
       backToMethod: "disabled",
@@ -34,6 +38,14 @@ export default {
   },
 
   methods: {
+    writeFoodData(itemId, itemName, itemDate) {
+      const db = getDatabase();
+      set(ref(db, "users/user1/food/" + itemId), {
+        name: itemName,
+        expiration: itemDate,
+      });
+    },
+
     readData() {
       // Copy our data from the upload component
       let copyUploadData = this.$refs.uploadComponent.dataImage;
