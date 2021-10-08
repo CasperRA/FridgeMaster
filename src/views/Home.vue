@@ -1,6 +1,6 @@
 <template>
   <body class="has-background-black is-fullscreen is-family-primary">
-    <button @click="writeFoodData('item1', 'cake', '27-10-2021')">Send DATA</button>
+    <!-- <button @click="writeFoodData('item2', 'spegepølse', '15-10-2021')">Send DATA</button> -->
     <Upload ref="uploadComponent" v-if="this.scanned === false" />
     <AfterScan v-if="this.scanned === true" />
     <Footer />
