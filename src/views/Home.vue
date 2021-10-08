@@ -16,7 +16,7 @@ import AfterScan from "@/components/AfterScan.vue";
 import Tesseract from "tesseract.js";
 import { initializeApp } from "firebase/app";
 import { firebaseConfig } from "../firebase.js";
-import { getDatabase, ref, set } from "firebase/database";
+import { getDatabase, ref, set, push } from "firebase/database";
 
 export default {
   name: "Home",

@@ -49,7 +49,7 @@ export default {
           i +
           "</div>" +
           '<div class="is-flex is-justify-content-space-between" style="width: 43%;">' +
-          '<input type="date"  min="2021-05-10" style="width: 70%">' +
+          '<input id="dateInput'+x+'" oninput="this.changeDate('+x+')" type="date"  min="2021-05-10" style="width: 70%">' +
           '<div class="is-flex is-justify-content-end" style="width: 30%; text-overflow: ellipsis; overflow: hidden;">' +
           '<button id="delete' +
           x +
@@ -66,18 +66,25 @@ export default {
       for (let y = 0; y < x; y++) {
         let deleteButton = document.getElementById("delete" + y);
         let item = document.getElementById("scannedItem" + y);
+        let input = document.getElementById("dateInput"+y);
         let self = this;
         let remover = function () {
           item.remove(), self.deleteFromDB("item" + y);
         };
         console.log(this.finalArray[y]);
         deleteButton.addEventListener("click", remover);
+        // input.addEventListener("update", self.changeDate(y))
       }
     },
 
   deleteFromDB(itemId) {
           const db = getDatabase();
       remove(ref(db, "users/user1/food/" + itemId));
+  },
+
+  changeDate(x) {
+   let date = document.getElementById("dateInput"+x).innerHTML;
+   console.log(date);
   }
 
     // reArrange() {
