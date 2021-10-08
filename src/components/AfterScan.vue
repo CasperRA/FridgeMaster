@@ -17,6 +17,8 @@
 </template>
 
 <script>
+import { getDatabase, ref, set, remove } from "firebase/database";
+
 export default {
   name: "Login",
   props: {
@@ -66,63 +68,69 @@ export default {
         let item = document.getElementById("scannedItem" + y);
         let self = this;
         let remover = function () {
-          item.remove(), self.finalArray.splice(y, 1), self.reArrange();
+          item.remove(), self.deleteFromDB("item" + y);
         };
         console.log(this.finalArray[y]);
         deleteButton.addEventListener("click", remover);
       }
     },
-    reArrange() {
-      if (this.removedItems == false) {
-        let itemCounter = 0;
-        this.removedItems = true
-        for (let z = 0; z < this.$parent.scannedArray.length; z++) {
-          let deleteButton = document.getElementById("delete" + z);
-          let item = document.getElementById("scannedItem" + z);
-          let self = this;
-          let remover = function () {
-            item.remove(),
-              self.finalArray.splice(itemCounter, 1),
-              self.reArrange();
-          };
-          console.log(z);
-          if (typeof item != "undefined" && item != null) {
-            let clone = deleteButton.cloneNode(true);
-            deleteButton.replaceWith(clone);
-            clone.id = "delete" + itemCounter;
-            clone.addEventListener("click", remover);
-            itemCounter++;
-            console.log("yep " + z);
-          } else {
-            console.log(z + " Element does not exist!");
-          }
-        }
-      }
-      else {
-        let itemCounter = 0;
-        for (let z = 0; z < this.$parent.scannedArray.length; z++) {
-          let deleteButton = document.getElementById("delete" + z);
-          let cloneEvent = document.getElementById("delete" + itemCounter);
-          let item = document.getElementById("scannedItem" + z);
-          let self = this;
-          let remover = function () {
-            item.remove(),
-              self.finalArray.splice(itemCounter, 1),
-              self.reArrange();
-          };
-          if (typeof item != "undefined" && item != null && deleteButton != null) {
-            let clone = cloneEvent.cloneNode(true);
-            cloneEvent.replaceWith(clone);
-            clone.id = "delete" + itemCounter;
-            cloneEvent.addEventListener("click", remover);
-            itemCounter++;
-            console.log("yep " + z);
-          } else {
-            console.log(z + " Element does not exist!");
-          }
-        }
-      }
-    },
+
+  deleteFromDB(itemId) {
+          const db = getDatabase();
+      remove(ref(db, "users/user1/food/" + itemId));
+  }
+
+    // reArrange() {
+    //   if (this.removedItems == false) {
+    //     let itemCounter = 0;
+    //     this.removedItems = true
+    //     for (let z = 0; z < this.$parent.scannedArray.length; z++) {
+    //       let deleteButton = document.getElementById("delete" + z);
+    //       let item = document.getElementById("scannedItem" + z);
+    //       let self = this;
+    //       let remover = function () {
+    //         item.remove(),
+    //           self.finalArray.splice(itemCounter, 1),
+    //           self.reArrange();
+    //       };
+    //       console.log(z);
+    //       if (typeof item != "undefined" && item != null) {
+    //         let clone = deleteButton.cloneNode(true);
+    //         deleteButton.replaceWith(clone);
+    //         clone.id = "delete" + itemCounter;
+    //         clone.addEventListener("click", remover);
+    //         itemCounter++;
+    //         console.log("yep " + z);
+    //       } else {
+    //         console.log(z + " Element does not exist!");
+    //       }
+    //     }
+    //   }
+    //   else {
+    //     let itemCounter = 0;
+    //     for (let z = 0; z < this.$parent.scannedArray.length; z++) {
+    //       let deleteButton = document.getElementById("delete" + z);
+    //       let cloneEvent = document.getElementById("delete" + itemCounter);
+    //       let item = document.getElementById("scannedItem" + z);
+    //       let self = this;
+    //       let remover = function () {
+    //         item.remove(),
+    //           self.finalArray.splice(itemCounter, 1),
+    //           self.reArrange();
+    //       };
+    //       if (typeof item != "undefined" && item != null && deleteButton != null) {
+    //         let clone = cloneEvent.cloneNode(true);
+    //         cloneEvent.replaceWith(clone);
+    //         clone.id = "delete" + itemCounter;
+    //         cloneEvent.addEventListener("click", remover);
+    //         itemCounter++;
+    //         console.log("yep " + z);
+    //       } else {
+    //         console.log(z + " Element does not exist!");
+    //       }
+    //     }
+    //   }
+    // },
   },
 };
 </script>

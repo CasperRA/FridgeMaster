@@ -14,8 +14,8 @@ import Upload from "@/components/Upload.vue";
 import Footer from "@/components/Footer.vue";
 import AfterScan from "@/components/AfterScan.vue";
 import Tesseract from "tesseract.js";
-import { initializeApp } from 'firebase/app'
-import { firebaseConfig } from '../firebase.js'
+import { initializeApp } from "firebase/app";
+import { firebaseConfig } from "../firebase.js";
 import { getDatabase, ref, set } from "firebase/database";
 
 export default {
@@ -38,14 +38,6 @@ export default {
   },
 
   methods: {
-    writeFoodData(itemId, itemName, itemDate) {
-      const db = getDatabase();
-      set(ref(db, "users/user1/food/" + itemId), {
-        name: itemName,
-        expiration: itemDate,
-      });
-    },
-
     readData() {
       // Copy our data from the upload component
       let copyUploadData = this.$refs.uploadComponent.dataImage;
@@ -124,8 +116,25 @@ export default {
           if (i == itemsArray.length - 1) {
             this.scannedArray = combinedArray;
             this.scanned = true;
+            this.uploadArray();
           }
         }
+      });
+    },
+    writeFoodData(itemId, itemName, itemDate) {
+      const db = getDatabase();
+      set(ref(db, "users/user1/food/" + itemId), {
+        name: itemName,
+        expiration: itemDate,
+      });
+    },
+    uploadArray() {
+      let itemNumber = 0;
+      let date = "01-01-2021";
+      let self = this;
+      this.scannedArray.forEach(function (i) {
+        self.writeFoodData("item"+itemNumber, i , date);
+        itemNumber++
       });
     },
   },
