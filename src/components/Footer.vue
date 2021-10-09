@@ -49,6 +49,8 @@ export default {
       console.log("went back");
       document.getElementById("footerButtonCenter2").style.display = "none"
       document.getElementById("footerButtonCenter").style.display = "block"
+      document.getElementById("recipe-showdetails").style.display = "none"
+      document.getElementById("recipe-mainview").style.display = "block"
     },
     accept() {
       document.getElementById("accepted-modal").classList.add("is-active")
