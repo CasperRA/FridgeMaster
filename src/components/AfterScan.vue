@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { getDatabase, ref, set, remove } from "firebase/database";
+import { getDatabase, ref, set, remove, update } from "firebase/database";
 
 export default {
   name: "Login",
@@ -40,6 +40,8 @@ export default {
       console.log(this.finalArray);
       let ul = document.getElementById("dataList");
       let x = 0;
+      let self = this;
+      document.getElementById("footerButtonCenter2").style.visibility = "visible";
       this.finalArray.forEach(function (i) {
         ul.innerHTML +=
           '<li id="scannedItem' +
@@ -49,13 +51,13 @@ export default {
           i +
           "</div>" +
           '<div class="is-flex is-justify-content-space-between" style="width: 43%;">' +
-          '<input id="dateInput'+x+'" oninput="this.changeDate('+x+')" type="date"  min="2021-05-10" style="width: 70%">' +
+          '<input id="dateInput'+x+'" type="date"  min="2021-05-10" style="width: 70%">' +
           '<div class="is-flex is-justify-content-end" style="width: 30%; text-overflow: ellipsis; overflow: hidden;">' +
           '<button id="delete' +
           x +
           '" class="button button-circle" style="position: relative; right: 0rem;">' +
           '<span class="icon is-small">' +
-          '<img src="@/component/photos/delete.svg">' +
+          '<img src="@/components/photos/delete.svg">' +
           "</span>" +
           "</button>" +
           "</div>" +
@@ -66,15 +68,23 @@ export default {
       for (let y = 0; y < x; y++) {
         let deleteButton = document.getElementById("delete" + y);
         let item = document.getElementById("scannedItem" + y);
-        let input = document.getElementById("dateInput"+y);
+        let date = document.getElementById("dateInput" + y)
         let self = this;
         let remover = function () {
           item.remove(), self.deleteFromDB("item" + y);
         };
+
         console.log(this.finalArray[y]);
         deleteButton.addEventListener("click", remover);
-        // input.addEventListener("update", self.changeDate(y))
-      }
+        date.addEventListener("input", function(){
+          const db = getDatabase();
+          let expirationDate = date.value;
+          let itemId = "item"+y;
+          update(ref(db, "users/user1/food/" + itemId), {
+        expiration: expirationDate,
+      });
+        })
+      };
     },
 
   deleteFromDB(itemId) {
@@ -82,10 +92,7 @@ export default {
       remove(ref(db, "users/user1/food/" + itemId));
   },
 
-  changeDate(x) {
-   let date = document.getElementById("dateInput"+x).innerHTML;
-   console.log(date);
-  }
+
 
     // reArrange() {
     //   if (this.removedItems == false) {

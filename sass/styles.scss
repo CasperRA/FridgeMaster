@@ -5,6 +5,7 @@
 $primary: #5CD48C;
 $primary-dark: #4FB578;
 $black: #394c4f;
+$danger: #FF604A;
 $button-border-width: 3px;
 $button-border-color: #394c4f;
 $family-primary: "Comfortaa", Arial;
@@ -19,6 +20,10 @@ $footer-padding: 2rem 1.5rem 2rem;
 
 .button-circle{
     border-radius: 9999px;
+}
+
+.main-button-rounded {
+    border-radius: 15%;
 }
 
 .is-xlarge {
@@ -67,10 +72,6 @@ height: 100%;
 
 .varer {
     padding: 0.5rem;
-}
-
-#footerButtonCenter2 {
-    display: none;
 }
 
 .acceptModal {

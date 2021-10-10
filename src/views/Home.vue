@@ -1,13 +1,16 @@
 <template>
-  <body class="has-background-black is-fullscreen is-family-primary">
+  <body class="has-background-black is-fullscreen is-family-primary has-text-white">
     <!-- <button @click="writeFoodData('item2', 'spegepølse', '15-10-2021')">Send DATA</button> -->
-    <Upload ref="uploadComponent" v-if="this.scanned === false" />
-    <AfterScan v-if="this.scanned === true" />
+    <FrontPage v-if="this.scanning === 'no' && this.recipe === 'no'"/>
+    <Upload ref="uploadComponent" v-if="this.scanning === 'yes'" />
+    <AfterScan v-if="this.scanning === 'complete'" />
+    <Recipe v-if="this.recipe === 'yes'" />
     <Footer />
   </body>
 </template>
 
 <script>
+import FrontPage from "@/components/FrontPage.vue";
 import Recipe from "@/components/Recipe.vue";
 import Cam from "@/components/Camera.vue";
 import Upload from "@/components/Upload.vue";
@@ -21,6 +24,7 @@ import { getDatabase, ref, set, push } from "firebase/database";
 export default {
   name: "Home",
   components: {
+    FrontPage,
     Recipe,
     Cam,
     Upload,
@@ -30,10 +34,9 @@ export default {
 
   data() {
     return {
-      activeMethod: "none",
-      backToMethod: "disabled",
-      scanned: false,
+      scanning: "no",
       scannedArray: "",
+      recipe: "no"
     };
   },
 
@@ -115,7 +118,7 @@ export default {
 
           if (i == itemsArray.length - 1) {
             this.scannedArray = combinedArray;
-            this.scanned = true;
+            this.scanning = "complete";
             this.uploadArray();
           }
         }
@@ -130,7 +133,7 @@ export default {
     },
     uploadArray() {
       let itemNumber = 0;
-      let date = "01-01-2021";
+      let date = "ingen dato";
       let self = this;
       this.scannedArray.forEach(function (i) {
         self.writeFoodData("item"+itemNumber, i , date);
