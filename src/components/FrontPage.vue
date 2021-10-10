@@ -17,32 +17,11 @@
       </h1>
     </div>
     <div style="height: 85%" class="pt-2">
-      <ul id="groceryList" style="height: 70%">
-        <li class="is-flex is-align-items-center">
-          <div
-            class="
-              is-flex is-justify-content-center
-              button-circle
-              has-background-danger
-              p-2
-              ml-5
-            "
-            style="height: 60px; width: 60px"
-          >
-            <img
-              src="@/components/photos/milk.svg"
-              alt="category"
-              style="height: 100%"
-            />
-          </div>
-          <div id="item1" class="ml-3">
-            <div id="">Example Title</div>
-            <div class="has-text-danger" id="">Example Date</div>
-          </div>
-        </li>
+      <ul class="pb-2" id="groceryList" style="height: 70%; overflow: scroll; overflow-x:hidden;">
+        
       </ul>
-      <div class="is-flex is-justify-content-space-around" style="height: 30%">
-        <div style="width: 30%;">
+      <div class="is-flex is-justify-content-space-around is-align-items-center" style="height: 30%">
+        <div style="width: 30%">
           <button
             class="has-background-primary button main-button-rounded"
             style="width: 100%; height: 30vw"
@@ -51,7 +30,7 @@
           </button>
           <h3 class="has-text-centered has-text-weight-bold">Min Liste</h3>
         </div>
-        <div style="width: 30%;">
+        <div style="width: 30%">
           <button
             class="has-background-primary button main-button-rounded"
             style="width: 100%; height: 30vw"
@@ -67,16 +46,51 @@
 </template>
 
 <script>
+import {
+  getDatabase,
+  ref,
+  set,
+  remove,
+  update,
+  child,
+  get,
+} from "firebase/database";
+
 export default {
   name: "FrontPage",
   data() {
     return {};
   },
-  mounted: function () {},
+  mounted: function () {
+    let ul = document.getElementById("groceryList");
+    console.log(ul);
+    let itemsAmount = 0;
+    let itemName;
+    let itemDate;
+    let itemsMax = 150;
+    const db = getDatabase();
+    let dbref = ref(db);
+    for (let x = 0; x < itemsMax; x++) {
+      get(child(dbref, "users/user1/food/item" + x)).then((snapshot) => {
+        if (snapshot.exists()) {
+          itemsAmount++;
+          itemName = snapshot.val().name;
+          itemDate = snapshot.val().expiration;
+          console.log(itemName, itemDate);
+          ul.innerHTML +=
+            "<li class='itemTransition is-flex is-align-items-center mt-2'><div class='is-flex is-justify-content-center button-circle has-background-danger ml-4 image-milk' style='height: 60px; width: 60px'></div>    <div class='ml-3' id='item" +
+            x +
+            "'>            <div>"+itemName+"</div> <div class='has-text-danger'>"+itemDate+"</div></div> </li>";
+        } else {
+          console.log("Nothing found on " + x);
+        }
+      });
+    }
+  },
   methods: {
-      goRecipe() {
-          this.$parent.recipe = "yes";
-      }
+    goRecipe() {
+      this.$parent.recipe = "yes";
+    },
   },
 };
 </script>

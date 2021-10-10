@@ -46,19 +46,16 @@ export default {
         ul.innerHTML +=
           '<li id="scannedItem' +
           x +
-          '" class="varer py-1.5 px-4 has-text-white is-flex is-justify-content-space-between is-align-items-center"style=" text-overflow: ellipsis; width: 100%;">' +
-          '<div class="is-flex" style="width: 55%; text-overflow: ellipsis; overflow: hidden;">' +
+          '" class="varer py-1.5 pl-4 pr-2 has-text-white is-flex is-justify-content-space-between is-align-items-center"style=" text-overflow: ellipsis; width: 100%;">' +
+          '<div class="is-flex pr-2" style="width: 55%; text-overflow: ellipsis; overflow: hidden;">' +
           i +
           "</div>" +
-          '<div class="is-flex is-justify-content-space-between" style="width: 43%;">' +
-          '<input id="dateInput'+x+'" type="date"  min="2021-05-10" style="width: 70%">' +
+          '<div class="is-flex is-justify-content-space-between" style="width: 45%;">' +
+          '<input id="dateInput'+x+'" type="date"  min="2021-05-10" style="width: 68%">' +
           '<div class="is-flex is-justify-content-end" style="width: 30%; text-overflow: ellipsis; overflow: hidden;">' +
           '<button id="delete' +
           x +
-          '" class="button button-circle" style="position: relative; right: 0rem;">' +
-          '<span class="icon is-small">' +
-          '<img src="@/components/photos/delete.svg">' +
-          "</span>" +
+          '" class="button button-circle image-delete has-background-danger" style="position: relative; right: 0rem; width:44px; height:44px">' +
           "</button>" +
           "</div>" +
           "</div>" +

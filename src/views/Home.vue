@@ -133,7 +133,7 @@ export default {
     },
     uploadArray() {
       let itemNumber = 0;
-      let date = "ingen dato";
+      let date = "Ingen dato";
       let self = this;
       this.scannedArray.forEach(function (i) {
         self.writeFoodData("item"+itemNumber, i , date);

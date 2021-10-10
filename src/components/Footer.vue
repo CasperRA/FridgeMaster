@@ -77,6 +77,7 @@ export default {
     },
     goScan() {
       this.$parent.scanning = "yes";
+      this.$parent.recipe = "no";
     },
     accept() {
       document.getElementById("accepted-modal").classList.add("is-active");
