@@ -1,5 +1,5 @@
 <template>
-<div class="is-fulltofooter">
+<div id="recipe-mainview" class="is-fulltofooter" style="display: block;">
   <h1 class="has-text-white is-size-3 has-text-centered has-text-weight-bold pt-3 pb-3">Opskrifter</h1>
   <section class="is-flex is-justify-content-space-around">
       <button id="dinner-foods" class="button has-background-warning is-xlarge" style="border: none;" ref="getCatagory" @click="SwapCatagory('dinner')">
@@ -20,7 +20,7 @@
       <div class="media">
         <div class="media-left">
           <div class="image is-128x128">
-            <img src="@/components/photos/FoodTemplate.png" alt="Recipe Thumbnail">
+            <img src="@/components/photos/FoodTemplate.png" alt="Recipe Thumbnail" @click="GetRecipeDetails()">
           </div>
         </div>
         <div class="media-content">
@@ -30,15 +30,54 @@
             <p class="mt-1">X Personer</p>
             <img class="image is-32x32 ml-3" src="@/components/photos/people_black_24dp.svg">
           </div>
-          <p>X kcal pr. person</p>
+          <div class="is-flex">
+            <p class="mt-1">X kcal pr. person</p>
+            <img id="top-expand" class="image is-32x32 ml-3" src="@/components/photos/expand.svg"  @click="ShowInfo('recipe-toplist')">
+          </div>
         </div>
       </div>
+      <article id="toprecipe" style="display: none;">
+        <div class="is-flex mt-4">
+          <div>
+            <div class="is-flex">
+              <img class="image is-32x32 mt-2" src="@/components/photos/katagori-tom.png">
+              <div class="ml-3">
+                <p>Ingredient</p>
+                <p class="has-text-danger">XX/XX - 20XX</p>
+              </div>
+            </div>
+            <div class="is-flex">
+              <img class="image is-32x32 mt-2" src="@/components/photos/katagori-tom.png">
+              <div class="ml-3">
+                <p>Ingredient</p>
+                <p class="has-text-danger">XX/XX - 20XX</p>
+              </div>
+            </div>
+          </div>
+          <div class="ml-3">
+            <div class="is-flex">
+              <img class="image is-32x32 mt-2" src="@/components/photos/katagori-tom.png">
+              <div class="ml-3">
+                <p>Ingredient</p>
+                <p class="has-text-danger">XX/XX - 20XX</p>
+              </div>
+            </div>
+            <div class="is-flex">
+              <img class="image is-32x32 mt-2" src="@/components/photos/katagori-tom.png">
+              <div class="ml-3">
+                <p>Ingredient</p>
+                <p class="has-text-danger">XX/XX - 20XX</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
     </article>
     <article id="recipe-box" class="box">
       <div class="media">
         <div class="media-left">
           <div class="image is-128x128">
-            <img src="@/components/photos/FoodTemplate.png" alt="Recipe Thumbnail">
+            <img src="@/components/photos/FoodTemplate.png" alt="Recipe Thumbnail" @click="GetRecipeDetails()">
           </div>
         </div>
         <div class="media-content">
@@ -48,12 +87,93 @@
             <p class="mt-1">X Personer</p>
             <img class="image is-32x32 ml-3" src="@/components/photos/people_black_24dp.svg">
           </div>
-          <p>X kcal pr. person</p>
+          <div class="is-flex">
+            <p class="mt-1">X kcal pr. person</p>
+            <img id="bottom-expand" class="image is-32x32 ml-3" src="@/components/photos/expand.svg"  @click="ShowInfo('recipe-bottomlist')">
+          </div>
         </div>
       </div>
+      <article id="bottomrecipe" style="display: none;">
+        <div class="is-flex mt-4">
+          <div>
+            <div class="is-flex">
+              <img class="image is-32x32 mt-2" src="@/components/photos/katagori-tom.png">
+              <div class="ml-3">
+                <p>Ingredient</p>
+                <p class="has-text-danger">XX/XX - 20XX</p>
+              </div>
+            </div>
+            <div class="is-flex">
+              <img class="image is-32x32 mt-2" src="@/components/photos/katagori-tom.png">
+              <div class="ml-3">
+                <p>Ingredient</p>
+                <p class="has-text-danger">XX/XX - 20XX</p>
+              </div>
+            </div>
+          </div>
+          <div class="ml-3">
+            <div class="is-flex">
+              <img class="image is-32x32 mt-2" src="@/components/photos/katagori-tom.png">
+              <div class="ml-3">
+                <p>Ingredient</p>
+                <p class="has-text-danger">XX/XX - 20XX</p>
+              </div>
+            </div>
+            <div class="is-flex">
+              <img class="image is-32x32 mt-2" src="@/components/photos/katagori-tom.png">
+              <div class="ml-3">
+                <p>Ingredient</p>
+                <p class="has-text-danger">XX/XX - 20XX</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
     </article>
   </section>
-  </div>
+</div>
+<div id="recipe-showdetails" class="is-fulltofooter" style="display: none;">
+  <h1 class="has-text-white is-size-3 has-text-centered has-text-weight-bold pt-3 pb-3">Example Recipe</h1>
+    <section class="ml-6">
+      <div class="media">
+        <div class="media-left">
+          <div class="image is-128x128">
+            <img src="@/components/photos/FoodTemplate.png" alt="Recipe Thumbnail" @click="GetRecipeDetails()">
+          </div>
+        </div>
+        <article id="recipe-ingredients" class="media-content is-flex">
+          <div>
+            <p class="has-text-white is-size-6">Example</p>
+            <p class="has-text-white is-size-6">Example</p>
+            <p class="has-text-white is-size-6">Example</p>
+            <p class="has-text-white is-size-6">Example</p>
+            <p class="has-text-white is-size-6">Example</p>
+          </div>
+          <div class="ml-4">
+            <p class="has-text-white is-size-6">Example</p>
+            <p class="has-text-white is-size-6">Example</p>
+            <p class="has-text-white is-size-6">Example</p>
+            <p class="has-text-white is-size-6">Example</p>
+            <p class="has-text-white is-size-6">Example</p>
+          </div>
+        </article>
+      </div>
+      <article>
+        <img class="image mt-4" src="@/components/photos/RecipeStep1.png">
+        <p class="has-text-white mt-2 pb-3">
+          Du starter med at Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce nisl nibh, porttitor id velit quis, ullamcorper
+          efficitur quam. Vivamus efficitur facilisis enim vel tempor. Phasellus laoreet, ex nec vulputate tempus, nisi nisl maximus ipsum,
+          vel auctor neque lacus eu tellus.
+        </p>
+        <img class="image mt-4" src="@/components/photos/RecipeStep2.png">
+        <p class="has-text-white mt-2 pb-3">
+          Du starter med at Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce nisl nibh, porttitor id velit quis, ullamcorper
+          efficitur quam. Vivamus efficitur facilisis enim vel tempor. Phasellus laoreet, ex nec vulputate tempus, nisi nisl maximus ipsum,
+          vel auctor neque lacus eu tellus.
+        </p>
+      </article>
+    </section>
+</div>
 </template>
 
 <script>
@@ -118,6 +238,36 @@ export default {
           desserttext.style.display = "block"
           console.log('Dessert')
         }
+      },
+      ShowInfo(recipeid) {
+        const topid = document.getElementById('toprecipe');
+        const bottomid = document.getElementById('bottomrecipe');
+        const topidexpand = document.getElementById('top-expand');
+        const bottomidexpand = document.getElementById('bottom-expand');
+
+        //Toggles between display none/block
+        if (recipeid == 'recipe-toplist'){
+          if (topid.style.display === "none") {
+            topid.style.display = "block";
+            console.log('show')
+          } else {
+            topid.style.display = "none";
+            console.log('hide')
+          }
+        }
+        if (recipeid == 'recipe-bottomlist'){
+          if (bottomid.style.display === "none") {
+            bottomid.style.display = "block";
+            console.log('show')
+          } else {
+            bottomid.style.display = "none";
+            console.log('hide')
+          }
+        }
+      },
+      GetRecipeDetails() {
+        document.getElementById("recipe-showdetails").style.display = "block"
+        document.getElementById("recipe-mainview").style.display = "none"
       }
     }
   };
