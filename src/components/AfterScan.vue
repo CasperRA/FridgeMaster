@@ -35,13 +35,15 @@ export default {
     this.startup();
   },
   methods: {
+    // Function that creates all the li, from our scannedarray + allows the user to delete items and add dates via event listeners
     startup() {
       this.finalArray = this.$parent.scannedArray;
       console.log(this.finalArray);
       let ul = document.getElementById("dataList");
       let x = 0;
       let self = this;
-      document.getElementById("footerButtonCenter2").style.visibility = "visible";
+      document.getElementById("footerButtonCenter2").style.visibility =
+        "visible";
       this.finalArray.forEach(function (i) {
         ul.innerHTML +=
           '<li id="scannedItem' +
@@ -51,7 +53,9 @@ export default {
           i +
           "</div>" +
           '<div class="is-flex is-justify-content-space-between" style="width: 45%;">' +
-          '<input id="dateInput'+x+'" type="date"  min="2021-05-10" style="width: 68%">' +
+          '<input id="dateInput' +
+          x +
+          '" type="date"  min="2021-05-10" style="width: 68%">' +
           '<div class="is-flex is-justify-content-end" style="width: 30%; text-overflow: ellipsis; overflow: hidden;">' +
           '<button id="delete' +
           x +
@@ -62,10 +66,11 @@ export default {
           "</li>";
         x++;
       });
+      // For loop that gets the created elements and adds event listeners 
       for (let y = 0; y < x; y++) {
         let deleteButton = document.getElementById("delete" + y);
         let item = document.getElementById("scannedItem" + y);
-        let date = document.getElementById("dateInput" + y)
+        let date = document.getElementById("dateInput" + y);
         let self = this;
         let remover = function () {
           item.remove(), self.deleteFromDB("item" + y);
@@ -73,75 +78,22 @@ export default {
 
         console.log(this.finalArray[y]);
         deleteButton.addEventListener("click", remover);
-        date.addEventListener("input", function(){
+        date.addEventListener("input", function () {
           const db = getDatabase();
           let expirationDate = date.value;
-          let itemId = "item"+y;
+          let itemId = "item" + y;
           update(ref(db, "users/user1/food/" + itemId), {
-        expiration: expirationDate,
-      });
-        })
-      };
+            expiration: expirationDate,
+          });
+        });
+      }
     },
 
-  deleteFromDB(itemId) {
-          const db = getDatabase();
+    // Deletes item from database
+    deleteFromDB(itemId) {
+      const db = getDatabase();
       remove(ref(db, "users/user1/food/" + itemId));
-  },
-
-
-
-    // reArrange() {
-    //   if (this.removedItems == false) {
-    //     let itemCounter = 0;
-    //     this.removedItems = true
-    //     for (let z = 0; z < this.$parent.scannedArray.length; z++) {
-    //       let deleteButton = document.getElementById("delete" + z);
-    //       let item = document.getElementById("scannedItem" + z);
-    //       let self = this;
-    //       let remover = function () {
-    //         item.remove(),
-    //           self.finalArray.splice(itemCounter, 1),
-    //           self.reArrange();
-    //       };
-    //       console.log(z);
-    //       if (typeof item != "undefined" && item != null) {
-    //         let clone = deleteButton.cloneNode(true);
-    //         deleteButton.replaceWith(clone);
-    //         clone.id = "delete" + itemCounter;
-    //         clone.addEventListener("click", remover);
-    //         itemCounter++;
-    //         console.log("yep " + z);
-    //       } else {
-    //         console.log(z + " Element does not exist!");
-    //       }
-    //     }
-    //   }
-    //   else {
-    //     let itemCounter = 0;
-    //     for (let z = 0; z < this.$parent.scannedArray.length; z++) {
-    //       let deleteButton = document.getElementById("delete" + z);
-    //       let cloneEvent = document.getElementById("delete" + itemCounter);
-    //       let item = document.getElementById("scannedItem" + z);
-    //       let self = this;
-    //       let remover = function () {
-    //         item.remove(),
-    //           self.finalArray.splice(itemCounter, 1),
-    //           self.reArrange();
-    //       };
-    //       if (typeof item != "undefined" && item != null && deleteButton != null) {
-    //         let clone = cloneEvent.cloneNode(true);
-    //         cloneEvent.replaceWith(clone);
-    //         clone.id = "delete" + itemCounter;
-    //         cloneEvent.addEventListener("click", remover);
-    //         itemCounter++;
-    //         console.log("yep " + z);
-    //       } else {
-    //         console.log(z + " Element does not exist!");
-    //       }
-    //     }
-    //   }
-    // },
+    },
   },
 };
 </script>
