@@ -42,8 +42,6 @@ export default {
         console.log(this.dataImage);
         document.getElementById("uploadForm").style.display = "none"
         document.getElementById("scanImageContainer").style.display = "flex"
-        document.getElementById("footerButtonCenter").style.display = "none"
-        document.getElementById("footerButtonCenter2").style.display = "block"
       }
     },
     // Launches the readData function in Home.vue 
