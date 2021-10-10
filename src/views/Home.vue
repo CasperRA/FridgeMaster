@@ -1,36 +1,42 @@
 <template>
-  <body class="has-background-black is-fullscreen is-family-primary">
-    <Recipe />
-    <!-- <Upload ref="uploadComponent" v-if="this.scanned === false" />
-    <AfterScan v-if="this.scanned === true" /> -->
+  <body class="has-background-black is-fullscreen is-family-primary has-text-white">
+    <!-- <button @click="writeFoodData('item2', 'spegepølse', '15-10-2021')">Send DATA</button> -->
+    <FrontPage v-if="this.scanning === 'no' && this.recipe === 'no'"/>
+    <Upload ref="uploadComponent" v-if="this.scanning === 'yes'" />
+    <AfterScan v-if="this.scanning === 'complete'" />
+    <Recipe v-if="this.recipe === 'yes'" />
     <Footer />
   </body>
 </template>
 
 <script>
+import FrontPage from "@/components/FrontPage.vue";
 import Recipe from "@/components/Recipe.vue";
 import Cam from "@/components/Camera.vue";
 import Upload from "@/components/Upload.vue";
 import Footer from "@/components/Footer.vue";
 import AfterScan from "@/components/AfterScan.vue";
 import Tesseract from "tesseract.js";
+import { initializeApp } from "firebase/app";
+import { firebaseConfig } from "../firebase.js";
+import { getDatabase, ref, set, push } from "firebase/database";
 
 export default {
   name: "Home",
   components: {
+    FrontPage,
     Recipe,
     Cam,
     Upload,
     Footer,
     AfterScan,
   },
-  
-    Recipedata() {
+
+  data() {
     return {
-      activeMethod: "none",
-      backToMethod: "disabled",
-      scanned: false,
+      scanning: "no",
       scannedArray: "",
+      recipe: "no"
     };
   },
 
@@ -112,9 +118,26 @@ export default {
 
           if (i == itemsArray.length - 1) {
             this.scannedArray = combinedArray;
-            this.scanned = true;
+            this.scanning = "complete";
+            this.uploadArray();
           }
         }
+      });
+    },
+    writeFoodData(itemId, itemName, itemDate) {
+      const db = getDatabase();
+      set(ref(db, "users/user1/food/" + itemId), {
+        name: itemName,
+        expiration: itemDate,
+      });
+    },
+    uploadArray() {
+      let itemNumber = 0;
+      let date = "Ingen dato";
+      let self = this;
+      this.scannedArray.forEach(function (i) {
+        self.writeFoodData("item"+itemNumber, i , date);
+        itemNumber++
       });
     },
   },
