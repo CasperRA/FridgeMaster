@@ -71,6 +71,7 @@ export default {
     msg: String,
   },
   methods: {
+    // Swaps between pages by changing data values (v-if is on the components)
     goBack() {
       this.$parent.scanning = "no";
       this.$parent.recipe = "no";
@@ -79,6 +80,7 @@ export default {
       this.$parent.scanning = "yes";
       this.$parent.recipe = "no";
     },
+    //Opens and closes the modal
     accept() {
       document.getElementById("accepted-modal").classList.add("is-active");
     },

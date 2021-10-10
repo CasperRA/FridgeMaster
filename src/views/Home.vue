@@ -58,9 +58,8 @@ export default {
         this.scannedArray = itemsArray;
         let combinedArray = [];
         let testNumbers = /\d/;
-        // search for certain items containing numbers or specific words, cut out those irrelevant
-        const filterSymbols = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
 
+        // removes array items that contain no price/numbers from the array (runs twice because of how splice works)
         for (let c = 0; c < itemsArray.length; c++) {
           if (testNumbers.test(itemsArray[c].toString()) == false) {
             console.log(
@@ -78,7 +77,7 @@ export default {
             itemsArray.splice(b, 1);
           }
         }
-
+        // removes array items that contain no pant or rabat (again twice because of splice)
         for (let a = 0; a < itemsArray.length; a++) {
           if (
             itemsArray[a].includes("RABAT") == true ||
@@ -91,7 +90,7 @@ export default {
             itemsArray.splice(a, 1);
           }
         }
-
+        // if array does not didnt get spliced from previous for loops, it removes the last part of the array containing the price, so we just have the name left. 
         for (let i = 0; i < itemsArray.length; i++) {
           console.log(i);
           if (
@@ -115,7 +114,7 @@ export default {
               combinedArray = combinedArray.concat(arrayString);
             }
           }
-
+        // Sets our scannedarray data to the new sorted array and runs the upload function
           if (i == itemsArray.length - 1) {
             this.scannedArray = combinedArray;
             this.scanning = "complete";
@@ -124,6 +123,7 @@ export default {
         }
       });
     },
+       // uploads our data to the database
     writeFoodData(itemId, itemName, itemDate) {
       const db = getDatabase();
       set(ref(db, "users/user1/food/" + itemId), {
@@ -131,6 +131,7 @@ export default {
         expiration: itemDate,
       });
     },
+    // uploads our data to the database
     uploadArray() {
       let itemNumber = 0;
       let date = "Ingen dato";
